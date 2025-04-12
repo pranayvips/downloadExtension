@@ -1,0 +1,202 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    /* background-color: blue; */
+    width: max-content;
+    height: max-content;
+    max-width: 700px;
+}
+
+.container{
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+}
+
+/* youtube starts here */
+.youtube{
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 20px;
+    display: none;
+}
+.youtube h1{
+    font-size: 30px;
+}
+/* youtube descrioption */
+.youtube p{
+    width: 100%;
+    font-size: 12px;
+    max-height: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+/* thumbnail iamge */
+.thumbnail{
+    grid-row: 1/4;
+    grid-column: 1;
+    border-radius: 4px;
+    width: 200px;
+}
+/* this is the channel div */
+.youtube div{
+    display: flex;
+    align-items: center;
+    column-gap: 20px;
+    font-size: 22px;
+    img{
+        height: 30px;
+    }
+}
+.youtube .count{
+    margin: 20px 0;
+    grid-column: 1/3;
+    display: flex;
+    justify-content: space-between;
+    h2:hover::after{
+        position: absolute;
+        top: -30px;
+        padding: 3px 10px;
+        font-size: 13px;
+        font-weight: normal;
+        white-space: nowrap;
+        left: 50%;
+        transform: translateX(-50%);
+        content: attr(data);
+        background-color: black;
+        color: white;
+        border: 1px solid white;
+        border-radius: 4px;
+    }
+    h2{
+        display: flex;
+        position: relative;
+        align-items: center;
+        column-gap: 20px;
+        font-size: 20px;
+        cursor: default;
+        svg{
+            height: 30px;
+        }
+    }
+}
+.youtube select{
+    margin-bottom: 20px;
+    padding: 10px;
+}
+.youtube nav{
+    grid-column: 1/3;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 20px;
+}
+.youtube button:first-child{
+    background-color: #339af0;
+}
+.youtube button:last-child{
+    background-color: #fcc419;
+}
+.youtube button:hover{
+    transform: scale(1.05);
+}
+.youtube button{
+    display: flex;
+    height: 60px;
+    align-items: center;
+    font-size: 20px;
+    border-radius: 4px;
+    border: none;
+    column-gap: 20px;
+    cursor: pointer;
+    justify-content: center;
+    transition: transform .5s;
+    svg{
+        height: 40px;
+    }
+}
+/* youtube ends here */
+
+
+.else{
+    display: none;
+    h1{
+        margin-bottom: 10px;
+    }
+    p{
+        margin-top: 30px;
+    }
+    h3{
+        margin-top: 50px;
+    }
+}
+
+@keyframes blink {
+    from{opacity: 0;}
+    to{opacity: 1;}
+}
+.fetching{
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+    align-items: center;
+    justify-content: center;
+    height: 400px;
+    width: 700px;
+    span{
+        animation: blink 1s linear infinite;
+    }
+    img{
+        height: 150px;
+    }
+    h6{
+        font-size: 14px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+    p{
+        font-size: 16px;
+    }
+}
+.instagram{
+    
+    display: grid;
+    display: none;
+    grid-template-columns: auto 1fr;
+    column-gap: 20px;
+    video{
+        height: 350px;
+        grid-column: 1;
+        grid-row: 1/5;
+    }
+    div{
+        display: flex;
+        justify-content: space-between;
+        svg{
+            height: 30px;
+        }
+    }
+    h1{
+        cursor: pointer;
+    }
+    h2{
+        display: flex;
+        align-items: center;
+        span{
+            font-size: 16px;
+        }
+    }
+    button{
+        height: 60px;
+        border: none;
+        background-color: #40c057;
+        border-radius: 4px;
+        font-size: 18px;
+        font-weight: bold;
+        color: white;
+        cursor: pointer;
+    }
+}
