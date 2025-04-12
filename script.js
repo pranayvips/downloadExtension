@@ -94,7 +94,7 @@ async function instagramSetter(videoId) {
 document.addEventListener("DOMContentLoaded", async () => {
   let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
   var link = tab.url;
-  if(link.includes("youtube.com")){
+  if(link.includes("youtube.com") && link.includes("v=")){
     link = link.split("v=")[1];
     link = link.split("&")[0];
     document.querySelector(".fetching img").setAttribute("src","./icon/youtube.png")
