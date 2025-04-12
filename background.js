@@ -1,4 +1,5 @@
-const MY_API_KEY = "6fff915f04msh2c7e2ec5887bb51p100ffdjsn9b5ba44dc9b5"
+// Your api key of rapid api goes here
+const MY_API_KEY = ""
 
 
 async function youtubeMp3(videoId) {
