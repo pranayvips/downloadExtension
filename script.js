@@ -118,9 +118,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.querySelector(".fetching h6").textContent = link;
     instagramSetter(link);
   }else{
-    document.getElementById("else-favicon").src = tab.favIconUrl;
+    if(tab.favIconUrl!=undefined){
+      document.getElementById("else-favicon").src = tab.favIconUrl;
+    }else{
+      document.getElementById("else-favicon").src = "notfound1.gif";
+    }
     document.getElementById("else-title").textContent = tab.title;
-    
     document.querySelector(".fetching").style.display = "none"
     document.querySelector(".else").style.display = "block"
 
