@@ -1,5 +1,5 @@
 // Your api key of rapid api goes here
-const MY_API_KEY = ""
+const MY_API_KEY = "6fff915f04msh2c7e2ec5887bb51p100ffdjsn9b5ba44dc9b5"
 
 async function getYoutubeInfo(videoId){
   const url = `https://youtube-v31.p.rapidapi.com/videos?part=contentDetails%2Csnippet%2Cstatistics&id=${videoId}`;
@@ -68,6 +68,7 @@ async function instagramSetter(videoId) {
   try {
   	const response = await fetch(url, options);
   	const result = await response.json();
+    console.log(result)
   	document.querySelector(".instagram").style.display = "grid"
     document.querySelector(".fetching").style.display = "none"
   	instagram[0].setAttribute("src",result['data']['xdt_api__v1__media__shortcode__web_info']['items'][0]['carousel_media'][0]['video_versions'][0]['url'])
@@ -91,10 +92,19 @@ async function instagramSetter(videoId) {
   
 }
 
+function getDomain(url) {
+  try {
+    return new URL(url).hostname.replace('www.', '');
+  } catch (e) {
+    return '';
+  }
+}
+
 
 document.addEventListener("DOMContentLoaded", async () => {
   let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
   var link = tab.url;
+  // if(false){
   if(link.includes("youtube.com") && link.includes("v=")){
     link = link.split("v=")[1];
     link = link.split("&")[0];
@@ -108,10 +118,15 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.querySelector(".fetching h6").textContent = link;
     instagramSetter(link);
   }else{
+    document.getElementById("else-favicon").src = tab.favIconUrl;
+    document.getElementById("else-title").textContent = tab.title;
+    
     document.querySelector(".fetching").style.display = "none"
     document.querySelector(".else").style.display = "block"
-    document.querySelector(".else a").setAttribute("href",link)
-    document.querySelector(".else a").textContent = link;
+
+    document.getElementById("else-link").setAttribute("href",link)
+    document.getElementById("else-link").textContent = link;
+    document.getElementById("else-domain").textContent = getDomain(link);
   }
 
 });

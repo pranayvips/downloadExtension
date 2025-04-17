@@ -128,9 +128,39 @@ body{
     }
     p{
         margin-top: 30px;
+        font-size: 18px;
+        white-space: nowrap;
     }
     h3{
         margin-top: 50px;
+    }
+    div{
+        display: grid;
+        grid-template-columns: auto 1fr;
+        column-gap: 20px;
+        img{
+            grid-row: 1/4;
+            width: 50px;
+            height: 50px;
+            grid-column: 1;
+        }
+        h2{
+            margin-bottom: 10px;
+        }
+    }
+    img{
+        margin-top: auto;
+        height: 150px;
+        display: block;
+        margin: 0 auto;
+    }
+    
+    #else-link{
+        max-height: 35px;
+        overflow: hidden;
+        font-size: 12px;
+        display: block;
+        text-overflow: ellipsis;
     }
 }
 
@@ -200,3 +230,4 @@ body{
         cursor: pointer;
     }
 }
+
