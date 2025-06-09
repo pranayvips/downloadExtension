@@ -30,7 +30,7 @@ async function getYoutubeInfo(videoId){
         if (response && response.success) {
           console.log("Result from background:", response.result);
         } else {
-          console.error("Failed to get response from background.");
+          console.log("Failed to get response from background.");
         }
       });
     })
@@ -39,12 +39,12 @@ async function getYoutubeInfo(videoId){
         if (response && response.success) {
           console.log("Result from background:", response.result);
         } else {
-          console.error("Failed to get response from background.");
+          console.log("Failed to get response from background.");
         }
       });
     })
   } catch (error) {
-  	console.error(error);
+  	console.log(error);
   }
 }
 
@@ -71,7 +71,8 @@ async function instagramSetter(videoId) {
     console.log(result)
   	document.querySelector(".instagram").style.display = "grid"
     document.querySelector(".fetching").style.display = "none"
-  	instagram[0].setAttribute("src",result['data']['xdt_api__v1__media__shortcode__web_info']['items'][0]['carousel_media'][0]['video_versions'][0]['url'])
+  	// instagram[0].setAttribute("src",result['data']['xdt_api__v1__media__shortcode__web_info']['items'][0]['carousel_media'][0]['video_versions'][0]['url'])
+  	instagram[0].setAttribute("src",result['data']['xdt_api__v1__media__shortcode__web_info']['items'][0]['video_versions'][0]['url'])
     instagram[1].textContent = result['data']['xdt_api__v1__media__shortcode__web_info']['items'][0]['user']['full_name']
     instagram[1].addEventListener("click",()=>{
       var link = `https://www.instagram.com/${result['data']['xdt_api__v1__media__shortcode__web_info']['items'][0]['user']['username']}`
@@ -86,7 +87,7 @@ async function instagramSetter(videoId) {
     })
 
   } catch (error) {
-  	console.error(error);
+  	console.log(error);
   }
 
   
@@ -105,6 +106,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
   var link = tab.url;
   // if(false){
+  console.log("hey there "+link)
   if(link.includes("youtube.com") && link.includes("v=")){
     link = link.split("v=")[1];
     link = link.split("&")[0];
@@ -117,8 +119,15 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.querySelector(".fetching img").setAttribute("src","./icon/instagram.png")
     document.querySelector(".fetching h6").textContent = link;
     instagramSetter(link);
+  }else if(link.includes("instagram.com") && link.includes("/reels/")){
+    link = link.split("/reels/")[1];
+    link = link.split("/")[0];
+    console.log("chal ja na: "+link)
+    document.querySelector(".fetching img").setAttribute("src","./icon/instagram.png")
+    document.querySelector(".fetching h6").textContent = link;
+    instagramSetter(link);
   }else{
-    if(tab.favIconUrl!=undefined){
+    if(tab.favIconUrl!=undefined || tab.favIconUrl==""){
       document.getElementById("else-favicon").src = tab.favIconUrl;
     }else{
       document.getElementById("else-favicon").src = "notfound1.gif";
